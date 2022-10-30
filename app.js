@@ -1,12 +1,9 @@
-import * as dotenv from 'dotenv' 
+const dotenv = require('dotenv')
 dotenv.config()
-import express from 'express'
+const  express  = require('express')
 const app = express()
+const routeManager = require('./route/route.manager.js')
 
-// console.log(process.env.PORT);
-
-app.get('/', function (req, res) {
-  res.send('Hello World')
-})
+routeManager(app)
 
 app.listen(process.env.PORT)
