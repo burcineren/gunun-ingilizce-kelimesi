@@ -1,5 +1,5 @@
 const {sequelize} = require('../config/config.js');
-const Word = require('../model/word.model.js');
+const Word = require('../model/word.model.js').Word;
 
 const getAllWords = (req, res) =>{
     Word.findAll().then((words)=>{
@@ -9,6 +9,33 @@ const getAllWords = (req, res) =>{
 });
     
 }
+
+const createWord = (req, res) => {
+
+    sequelize.sync().then(() => {
+        console.log('book table created / updated successfully');
+
+        Word.create({
+            word: req.body.word,
+            mean: req.body.mean,
+            category: req.body.category
+        }).then(resp => {
+            console.log(resp)
+            res.send({
+                "status": "success",
+                data:resp
+            })
+
+        }).catch((error) => {
+            console.error('Failed to create a new record',error);
+
+        });
+    }).catch((error) => {
+        console.error('Unable to create table',error);
+    })
+}
 module.exports = {
     getAllWords,
+    createWord
 };
+

@@ -5,6 +5,8 @@ const wordController = require('../controller/word.controller');
 
 
 router.get('/', wordController.getAllWords);
+router.get('/', wordController.createWord);
+
 
 
 module.exports = router;

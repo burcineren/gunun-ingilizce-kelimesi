@@ -1,12 +1,8 @@
 const {Sequelize} = require('sequelize');
 const dbo = require('../config/database.js');
 
-const sequelize = new Sequelize(
-    dbo.database,
-    dbo.username,
-    dbo.password,
-    {
-        host   : dbo.host,
+const sequelize = new Sequelize(dbo.database, dbo.username, dbo.password, {
+        host: dbo.host,
         dialect: dbo.dialect,
     }
 );
