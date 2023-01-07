@@ -12,10 +12,10 @@ const getAllWords = (req, res) =>{
 
 const createWord = (req, res) => {
 
-    sequelize.sync().then(() => {
+    sequelize.sync().then(() => { //veritabanı tablosunu modele göre eşitleme işlemi yapıyor.
         console.log('book table created / updated successfully');
 
-        Word.create({
+        Word.create({// güncelleme işlemi olduktan sonra göndericeğimiz alanlara göre işlem yapacak 
             word: req.body.word,
             mean: req.body.mean,
             category: req.body.category

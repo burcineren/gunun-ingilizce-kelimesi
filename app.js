@@ -4,7 +4,8 @@ const  express  = require('express')
 const app = express()
 const routeManager = require('./route/route.manager.js')
 const {connect} = require('./config/config.js')
-const {createWordTable} = require('./model/word.model.js')
+const {createWordTable} = require('./models/word.model.js')
+const db = require ('./models/index')
 
 const bodyParser = require('body-parser')
 
@@ -16,6 +17,13 @@ routeManager(app)
 connect();
 createWordTable();
 
+db.sequelize.sync()
+    .then(() => {
+        console.log("Connected db.");
+    })
+    .catch((err) => {
+        console.log("Failed to sync db: " + err.message);
+    });
 
 
 
