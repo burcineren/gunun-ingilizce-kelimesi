@@ -10,6 +10,16 @@ const getAllWords = (req, res) => {
     });
 }
 
+const getWord = (req, res) => {
+    Word.findOne({ where: {id: req.params.id}})
+    .then((words) => {
+        res.send(words)
+    }).catch((error) => {
+        console.error('Unable to get words : ', error);
+    });
+}
+
+
 const createWord = (req, res) => {
 
     Word.create({
@@ -29,7 +39,7 @@ const createWord = (req, res) => {
 module.exports = {
     getAllWords,
     createWord,
-
+    getWord,
 }
 
 
