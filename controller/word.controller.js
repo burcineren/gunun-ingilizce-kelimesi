@@ -56,8 +56,14 @@ const updateWord = (req, res) => {
 }
 const deleteWord = (req, res) => {
     Word.destroy({where: {id: req.params.id}}).then(resp =>{
-        
-    })
+        res.send({
+            "status": "success",
+            data: resp
+        })
+    }).catch((error) => {
+        console.error('Failed to delete word: ',error);
+    });
+
 }
 
 module.exports = {
